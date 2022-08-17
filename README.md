@@ -1,4 +1,4 @@
-# Data Structure and Algorithms
+# Kalman Filter
 
 ![workflow](https://github.com/arghadeep25/Kalman-Filter/actions/workflows/release.yml/badge.svg)
 [![Hits-of-Code](https://hitsofcode.com/github/arghadeep25/Kalman-Filter)](https://hitsofcode.com/github/arghadeep25/Data-Structures-and-Algorithms/view)
