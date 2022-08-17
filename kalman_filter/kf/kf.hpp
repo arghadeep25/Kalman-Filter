@@ -1,3 +1,10 @@
+/************************************
+* @file kf.hpp
+* @details Kalman Filter Header
+* @author Arghadeep Mazumder
+* @version 1.0.0
+* @copyright -
+************************************/
 #ifndef KALMAN_FILTER_HPP_
 #define KALMAN_FILTER_HPP_
 
@@ -13,7 +20,6 @@ namespace kalman_filter {
  *        produces estimates of unknown variables that tend to be more accurate
  *        than those based on a single measurement alone, by estimating a joint
  *        probability distribution over the variables for each timeframe
- *
  *
  * @tparam DataType
  */
