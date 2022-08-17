@@ -26,7 +26,7 @@ public:
    *        c is the number of control inputs
    * @param dt - Time Step
    * @param A - State Transition Model              [nxn matrix]
-   * @param B - Control Input                       []
+   * @param B - Control Input                       [nxc matrix]
    * @param H - Observation Model                   [mxn matrix]
    * @param Q - Process Noise Covariance            [nxn matrix]
    * @param R - Observation Noise Covariance        [mxm matrix]
@@ -38,9 +38,16 @@ public:
       : A(A), B(B), H(H), Q(Q), R(R), P0(P), n(A.rows()), initialized(false) {}
 
 public:
+  /**
+   * @brief Default destructor
+   */
   ~KalmanFilter() = default;
 
 public:
+  /**
+   * @brief Function to set the initial parameters trivially
+   *        if the parameters are not initialized
+   */
   inline void init() {
     x_hat = VectorXt<DataType>(n).setZero();
     P = P0;
@@ -49,6 +56,11 @@ public:
   }
 
 public:
+  /**
+   * @brief Function to initialize the state vector for the
+   *        first iteration.
+   * @param x0 Initial values of the state vector
+   */
   inline void init(const VectorXt<DataType> &x0) {
     x_hat = VectorXt<DataType>(n).setZero();
     x_hat = x0;
@@ -59,10 +71,11 @@ public:
 
 public:
   /**
-   * @brief \begin{equation}\hat{x}_{0,0}, {P}_{0,0}\end{equation}
+   * @brief Function to update the prediction
+   *        \begin{equation}\hat{x}_{0,0}, {P}_{0,0}\end{equation}
    *        \begin{equation}{K}_{n} = {P}_{n,n-1}H^{T}(HP_{n,n-1}H^{T} + R_{n}
    * )^{-1}\end{equation}
-   * @param z
+   * @param z Control Input
    */
   inline void predict(const VectorXt<DataType> &u) {
     if (!initialized) {
@@ -75,6 +88,10 @@ public:
   }
 
 public:
+  /**
+   * @brief Function to update KF based on the measurement
+   * @param z Measurement value
+   */
   inline void update(const VectorXt<DataType> &z) {
     K = P * H.transpose() * (H * P * H.transpose() + R).inverse();
     x_hat += K * (z - H * x_hat);
@@ -82,15 +99,31 @@ public:
   }
 
 public:
+  /**
+   * @brief Function to update the state transition model
+   * @param A State Transition Model
+   */
   inline void updateDynamics(const MatrixXt<DataType> &A) { this->A = A; }
 
 public:
-  inline void updateOutput(const MatrixXt<DataType> &C) { this->C = C; }
+  /**
+   * @brief Function to update the control
+   * @param H Observation Model
+   */
+  inline void updateObservation(const MatrixXt<DataType> &H) { this->H = H; }
 
 public:
+  /**
+   * @brief Function to get the state predictions
+   * @return State prediction
+   */
   inline VectorXt<DataType> state() { return x_hat; }
 
 public:
+  /**
+   * @brief Function to get the state covariance matrix
+   * @return State Covariance Matrix
+   */
   inline MatrixXt<DataType> stateCovar() { return P; }
 
 private:
