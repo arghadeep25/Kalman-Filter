@@ -1,6 +1,6 @@
 # Data Structure and Algorithms
 
-![workflow](https://github.com/arghadeep25/Kalman-Filter/actions/workflows/cmake.yml/badge.svg)
+![workflow](https://github.com/arghadeep25/Kalman-Filter/actions/workflows/release.yml/badge.svg)
 [![Hits-of-Code](https://hitsofcode.com/github/arghadeep25/Kalman-Filter)](https://hitsofcode.com/github/arghadeep25/Data-Structures-and-Algorithms/view)
 ![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)
 ![C++](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)
@@ -14,7 +14,7 @@
 | Kalman Filter                                                                            | &check; |
 | Extended Kalman Filter                                                                   | &cross; |
 | Unscented Kalman Filter                                                                                       | &cross; |
-| 
+
 
 
 
